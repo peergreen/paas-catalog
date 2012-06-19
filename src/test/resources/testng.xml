@@ -28,7 +28,8 @@
 <suite name="Catalog Tests">
     <test name="tests">
         <classes>
-           
+            <class name="org.ow2.jonas.jpaas.catalog.test.TestIaasCatalogFacadeBean"/>
+            <class name="org.ow2.jonas.jpaas.catalog.test.TestPaasCatalogFacadeBean"/>
         </classes>
     </test>
 </suite>
