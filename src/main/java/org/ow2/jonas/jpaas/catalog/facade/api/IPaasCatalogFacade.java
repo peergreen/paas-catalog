@@ -65,6 +65,6 @@ public interface IPaasCatalogFacade {
      *
      * @return the name
      */
-    String getDefaultPaasConfigurationName();
+    public String getDefaultPaasConfigurationName();
 
 }

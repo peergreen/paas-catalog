@@ -47,11 +47,16 @@ public class TestPaasCatalogFacadeBean {
      */
     private IPaasCatalogFacade iPaasCatalogFacade = null;
 
+    /**
+     * Name of the module for the lookup
+     */
+    private final String moduleName = System.getProperty("module.name");
+
 
     @BeforeClass
     public void init() throws NamingException {
-        this.iPaasCatalogFacade = (IPaasCatalogFacade) new InitialContext().lookup("java:global/" +
-                "jpaas-catalog-1.0.0-SNAPSHOT/PaasCatalogFacadeBean!" +
+        this.iPaasCatalogFacade = (IPaasCatalogFacade) new InitialContext().lookup("java:global/" + moduleName +
+                "/PaasCatalogFacadeBean!" +
                 "org.ow2.jonas.jpaas.catalog.facade.api.IPaasCatalogFacade");
     }
 
