@@ -28,20 +28,9 @@ package org.ow2.jonas.jpaas.catalog.facade.bean;
 import org.ow2.jonas.jpaas.catalog.facade.api.IIaasCatalogFacade;
 import org.ow2.jonas.jpaas.catalog.facade.object.IaasConfiguration;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
-
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -63,7 +52,7 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
      * Load a configuration
      */
     @PostConstruct
-    public void loadConfiguration() throws ParserConfigurationException, IOException, SAXException {
+    public void loadConfiguration() {
         iaasConfigurationList = new LinkedList<IaasConfiguration>();
 
         //Sirocco IaasConfiguration Hard-coded

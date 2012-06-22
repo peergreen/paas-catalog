@@ -25,9 +25,6 @@
 
 package org.ow2.jonas.jpaas.catalog.facade.object;
 
-
-import org.w3c.dom.Element;
-
 import java.util.List;
 
 /**

@@ -27,19 +27,10 @@ package org.ow2.jonas.jpaas.catalog.facade.bean;
 
 import org.ow2.jonas.jpaas.catalog.facade.api.IPaasCatalogFacade;
 import org.ow2.jonas.jpaas.catalog.facade.object.PaasConfiguration;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -61,7 +52,7 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
      * Load a configuration
      */
     @PostConstruct
-    public void loadConfiguration() throws ParserConfigurationException, IOException, SAXException {
+    public void loadConfiguration() {
         paasConfigurationList = new LinkedList<PaasConfiguration>();
 
         List<String> capabilities = new LinkedList<String>();
