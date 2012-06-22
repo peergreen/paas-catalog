@@ -62,9 +62,9 @@ public class IaasConfiguration implements java.io.Serializable {
     private boolean autoStart;
 
     /**
-     * Specific configuration of the IaaS
+     * Path of the Specific configuration file of the IaaS
      */
-    private Element specificConfig;
+    private String specificConfig;
 
     /**
      * The prefix for the resource's name of this IaaS
@@ -78,7 +78,7 @@ public class IaasConfiguration implements java.io.Serializable {
 
 
     public IaasConfiguration(String name, String type, String subType, boolean isDefault, boolean autoStart,
-            Element specificConfig, String prefixResourceName, List<String> capabilities) {
+            String specificConfig, String prefixResourceName, List<String> capabilities) {
         this.name = name;
         this.type = type;
         this.subType = subType;
@@ -129,11 +129,11 @@ public class IaasConfiguration implements java.io.Serializable {
         this.autoStart = autoStart;
     }
 
-    public Element getSpecificConfig() {
+    public String getSpecificConfig() {
         return specificConfig;
     }
 
-    public void setSpecificConfig(Element specificConfig) {
+    public void setSpecificConfig(String specificConfig) {
         this.specificConfig = specificConfig;
     }
 
@@ -160,7 +160,7 @@ public class IaasConfiguration implements java.io.Serializable {
                 .append(", subType=").append(getSubType())
                 .append(", isDefault=").append(isDefault())
                 .append(", autoStart=").append(isAutoStart())
-                .append(", specificConfig=").append(getSpecificConfig().toString())
+                .append(", specificConfig=").append(getSpecificConfig())
                 .append(", prefixResourceName=").append(getPrefixResourceName())
                 .append(", capabilities=").append(getCapabilities().toString()).append("]");
         return sb.toString();

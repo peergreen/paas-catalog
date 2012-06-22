@@ -57,14 +57,14 @@ public class PaasConfiguration implements java.io.Serializable {
     private boolean isDefault;
 
     /**
-     * Specific configuration of the IaaS
+     * Path of the Specific configuration file of the IaaS
      */
-    private Element specificConfig;
+    private String specificConfig;
 
     /**
-     * Devops conf of the IaaS (Download Url, Chef role...)
+     * Path of the Devops configuration file of the IaaS (Download Url, Chef role...)
      */
-    private Element devopsConf;
+    private String devopsConf;
 
     /**
      * The prefix for the resource's name of this IaaS
@@ -82,8 +82,8 @@ public class PaasConfiguration implements java.io.Serializable {
     private int portRangeSize;
 
 
-    public PaasConfiguration(String name, String type, String subType, boolean aDefault, Element specificConfig,
-            Element devopsConf, String prefixResourceName, List<String> capabilities, int portRangeSize) {
+    public PaasConfiguration(String name, String type, String subType, boolean aDefault, String specificConfig,
+            String devopsConf, String prefixResourceName, List<String> capabilities, int portRangeSize) {
         this.name = name;
         this.type = type;
         this.subType = subType;
@@ -127,19 +127,19 @@ public class PaasConfiguration implements java.io.Serializable {
         isDefault = isDefault;
     }
 
-    public Element getSpecificConfig() {
+    public String getSpecificConfig() {
         return specificConfig;
     }
 
-    public void setSpecificConfig(Element specificConfig) {
+    public void setSpecificConfig(String specificConfig) {
         this.specificConfig = specificConfig;
     }
 
-    public Element getDevopsConf() {
+    public String getDevopsConf() {
         return devopsConf;
     }
 
-    public void setDevopsConf(Element devopsConf) {
+    public void setDevopsConf(String devopsConf) {
         this.devopsConf = devopsConf;
     }
 
@@ -173,8 +173,8 @@ public class PaasConfiguration implements java.io.Serializable {
                 .append(", type=").append(getType())
                 .append(", subType=").append(getSubType())
                 .append(", isDefault=").append(isDefault())
-                .append(", specificConfig=").append(getSpecificConfig().toString())
-                .append(", DevopsConf=").append(getDevopsConf().toString())
+                .append(", specificConfig=").append(getSpecificConfig())
+                .append(", DevopsConf=").append(getDevopsConf())
                 .append(", prefixResourceName=").append(getPrefixResourceName())
                 .append(", capabilities=").append(getCapabilities().toString())
                 .append(", portRangeSize=").append(getPortRangeSize())

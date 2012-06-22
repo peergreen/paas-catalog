@@ -68,19 +68,8 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
 
         //Sirocco IaasConfiguration Hard-coded
         List<String> capabilities = new LinkedList<String>();
-        String specificConfigString = "<specificConfig>" +
-                "<end-point>http://www.sirocco.com/api</end-point>" +
-                "<api-version>1.0</api-version>" +
-                "<identity>bull</identity>" +
-                "<credential>bull</credential>" +
-                "<hardware-id>small</hardware-id>" +
-                "<image-id>vmi-2266c170</image-id>" +
-                "</specificConfig>";
-        InputSource inputSource = new InputSource();
-        inputSource.setCharacterStream(new StringReader(specificConfigString));
-        DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document doc = db.parse(inputSource);
-        Element specificConfig = doc.getDocumentElement();
+        String specificConfig = System.getProperty("user.home") + System.getProperty("file.separator")
+                + "specificConfig_sirocco.xml";
         IaasConfiguration sirocco = new IaasConfiguration("sirocco", "compute", "vmm", true, true,
                 specificConfig, "SiroccoVM", capabilities);
         iaasConfigurationList.add(sirocco);

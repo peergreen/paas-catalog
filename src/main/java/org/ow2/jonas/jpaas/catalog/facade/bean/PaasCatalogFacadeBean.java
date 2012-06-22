@@ -67,64 +67,30 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
         List<String> capabilities = new LinkedList<String>();
 
         //JOnAS M6 PaasConfiguration Hard-coded
-        String specificConfigString = "<specificConfig><profile>full</profile><version>5.3.0</version>" +
-                "</specificConfig>";
-        InputSource inputSource = new InputSource();
-        inputSource.setCharacterStream(new StringReader(specificConfigString));
-        DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document doc = db.parse(inputSource);
-        Element specificConfig = doc.getDocumentElement();
-
-        String devopsConfString = "<devopsconf><url>http://download.forge.objectweb.org/jonas" +
-                "/jonas-full-5.3.0-M6-bin.zip</url><chef-role>jonas</chef-role></devopsconf>";
-        inputSource = new InputSource();
-        inputSource.setCharacterStream(new StringReader(devopsConfString));
-        db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        doc = db.parse(inputSource);
-        Element devopsConf = doc.getDocumentElement();
-
+        String specificConfig = System.getProperty("user.home") + System.getProperty("file.separator")
+                + "specificConfig_jonas-full-5.3.0-M6.xml";
+        String devopsConf = System.getProperty("user.home") + System.getProperty("file.separator")
+                + "devopsConf_jonas-full-5.3.0-M6.xml";
         PaasConfiguration jonasFullM6 = new PaasConfiguration("jonas-full-5.3.0-M6", "container", "jonas", true,
                 specificConfig, devopsConf, "jonas", capabilities, 10);
         paasConfigurationList.add(jonasFullM6);
 
 
         //Micro-JOnAS M6 PaasConfiguration Hard-coded
-        specificConfigString = "<specificConfig><profile>micro</profile><version>5.3.0</version>" +
-                "</specificConfig>";
-        inputSource = new InputSource();
-        inputSource.setCharacterStream(new StringReader(specificConfigString));
-        db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        doc = db.parse(inputSource);
-        specificConfig = doc.getDocumentElement();
-
-        devopsConfString = "<devopsconf><url>http://download.forge.objectweb.org/" +
-                "jonas/micro-jonas-5.3.0-M6-bin.zip</url><chef-role>jonas</chef-role></devopsconf>";
-        inputSource = new InputSource();
-        inputSource.setCharacterStream(new StringReader(devopsConfString));
-        db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        doc = db.parse(inputSource);
-        devopsConf = doc.getDocumentElement();
-
+        specificConfig = System.getProperty("user.home") + System.getProperty("file.separator")
+                + "specificConfig_micro-jonas-5.3.0-M6.xml";
+        devopsConf = System.getProperty("user.home") + System.getProperty("file.separator")
+                + "devopsConf_micro-jonas-5.3.0-M6.xml";
         PaasConfiguration microJonasM6 = new PaasConfiguration("micro-jonas-5.3.0-M6", "container", "jonas", true,
                 specificConfig, devopsConf, "jonas", capabilities, 10);
         paasConfigurationList.add(microJonasM6);
 
         //Apache Jk PaasConfiguration Hard-coded
         capabilities = new LinkedList<String>();
-        specificConfigString = "<specificConfig><profile>apache-jk</profile><version>2.0-1.2.25</version>" +
-                "</specificConfig>";
-        inputSource = new InputSource();
-        inputSource.setCharacterStream(new StringReader(devopsConfString));
-        db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        doc = db.parse(inputSource);
-        specificConfig = doc.getDocumentElement();
-
-        devopsConfString = "<devopsconf></devopsconf>";
-        inputSource = new InputSource();
-        inputSource.setCharacterStream(new StringReader(devopsConfString));
-        db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        doc = db.parse(inputSource);
-        devopsConf = doc.getDocumentElement();
+        specificConfig = System.getProperty("user.home") + System.getProperty("file.separator")
+                + "specificConfig_apacheJk.xml";
+        devopsConf = System.getProperty("user.home") + System.getProperty("file.separator")
+                + "devopsConf_apacheJk.xml";
         PaasConfiguration apacheJk = new PaasConfiguration("apacheJk", "router", "jk", false,
                 specificConfig, devopsConf, "jk", capabilities, 5);
         paasConfigurationList.add(apacheJk);
