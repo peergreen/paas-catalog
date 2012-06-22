@@ -38,7 +38,7 @@ import java.util.List;
  * PaasCatalog Singleton Bean
  * @author David Richard
  */
-@Singleton
+@Singleton(mappedName = "PaasCatalog")
 @Startup
 public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
 

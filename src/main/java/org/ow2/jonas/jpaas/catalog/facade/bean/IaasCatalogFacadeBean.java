@@ -38,7 +38,7 @@ import java.util.List;
  * IaasCatalog Singleton Bean
  * @author David Richard
  */
-@Singleton
+@Singleton(mappedName = "IaasCatalog")
 @Startup
 public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
 
