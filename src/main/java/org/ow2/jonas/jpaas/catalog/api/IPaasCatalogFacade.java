@@ -23,9 +23,7 @@
  * --------------------------------------------------------------------------
  */
 
-package org.ow2.jonas.jpaas.catalog.facade.api;
-
-import org.ow2.jonas.jpaas.catalog.facade.object.PaasConfiguration;
+package org.ow2.jonas.jpaas.catalog.api;
 
 import javax.ejb.Remote;
 import java.util.List;

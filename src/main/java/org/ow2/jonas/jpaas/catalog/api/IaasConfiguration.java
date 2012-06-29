@@ -23,15 +23,15 @@
  * --------------------------------------------------------------------------
  */
 
-package org.ow2.jonas.jpaas.catalog.facade.object;
+package org.ow2.jonas.jpaas.catalog.api;
 
 import java.util.List;
 
 /**
- * Define a Paas Configuration
+ * Define an Iaas Configuration
  * @author David Richard
  */
-public class PaasConfiguration implements java.io.Serializable {
+public class IaasConfiguration implements java.io.Serializable {
 
     /**
      * Name of the IaasConfiguration.
@@ -54,14 +54,14 @@ public class PaasConfiguration implements java.io.Serializable {
     private boolean isDefault;
 
     /**
+     * True if the IaaS start automatically
+     */
+    private boolean autoStart;
+
+    /**
      * Path of the Specific configuration file of the IaaS
      */
     private String specificConfig;
-
-    /**
-     * Path of the Devops configuration file of the IaaS (Download Url, Chef role...)
-     */
-    private String devopsConf;
 
     /**
      * The prefix for the resource's name of this IaaS
@@ -73,23 +73,17 @@ public class PaasConfiguration implements java.io.Serializable {
      */
     private List<String> capabilities;
 
-    /**
-     * Amount of needed port number
-     */
-    private int portRangeSize;
 
-
-    public PaasConfiguration(String name, String type, String subType, boolean aDefault, String specificConfig,
-            String devopsConf, String prefixResourceName, List<String> capabilities, int portRangeSize) {
+    public IaasConfiguration(String name, String type, String subType, boolean isDefault, boolean autoStart,
+            String specificConfig, String prefixResourceName, List<String> capabilities) {
         this.name = name;
         this.type = type;
         this.subType = subType;
-        isDefault = aDefault;
+        this.isDefault = isDefault;
+        this.autoStart = autoStart;
         this.specificConfig = specificConfig;
-        this.devopsConf = devopsConf;
         this.prefixResourceName = prefixResourceName;
         this.capabilities = capabilities;
-        this.portRangeSize = portRangeSize;
     }
 
     public String getName() {
@@ -124,20 +118,20 @@ public class PaasConfiguration implements java.io.Serializable {
         isDefault = isDefault;
     }
 
+    public boolean isAutoStart() {
+        return autoStart;
+    }
+
+    public void setAutoStart(boolean autoStart) {
+        this.autoStart = autoStart;
+    }
+
     public String getSpecificConfig() {
         return specificConfig;
     }
 
     public void setSpecificConfig(String specificConfig) {
         this.specificConfig = specificConfig;
-    }
-
-    public String getDevopsConf() {
-        return devopsConf;
-    }
-
-    public void setDevopsConf(String devopsConf) {
-        this.devopsConf = devopsConf;
     }
 
     public String getPrefixResourceName() {
@@ -156,26 +150,16 @@ public class PaasConfiguration implements java.io.Serializable {
         this.capabilities = capabilities;
     }
 
-    public int getPortRangeSize() {
-        return portRangeSize;
-    }
-
-    public void setPortRangeSize(int portRangeSize) {
-        this.portRangeSize = portRangeSize;
-    }
-
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("IaasConfiguration[name=").append(getName())
                 .append(", type=").append(getType())
                 .append(", subType=").append(getSubType())
                 .append(", isDefault=").append(isDefault())
+                .append(", autoStart=").append(isAutoStart())
                 .append(", specificConfig=").append(getSpecificConfig())
-                .append(", DevopsConf=").append(getDevopsConf())
                 .append(", prefixResourceName=").append(getPrefixResourceName())
-                .append(", capabilities=").append(getCapabilities().toString())
-                .append(", portRangeSize=").append(getPortRangeSize())
-                .append("]");
+                .append(", capabilities=").append(getCapabilities().toString()).append("]");
         return sb.toString();
     }
 }

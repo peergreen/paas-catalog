@@ -38,7 +38,7 @@
     <groupId>org.ow2.jonas.jpaas.catalog</groupId>
     <artifactId>jpaas-catalog</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>bundle</packaging>
     <name>JPaaS :: Catalog</name>
 
     <description>JPaaS : Catalog</description>
@@ -125,9 +125,25 @@
                     <target>${jdk.version}</target>
                 </configuration>
             </plugin>
+
+          <plugin>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>maven-bundle-plugin</artifactId>
+            <version>2.2.0</version>
+            <extensions>true</extensions>
+            <goals>
+              <goal>bundle</goal>
+            </goals>
+            <configuration>
+              <instructions>
+                <_include>-target/classes/META-INF/${project.artifactId}.bnd</_include>
+              </instructions>
+            </configuration>
+          </plugin>
+
             <!--
-                    Make sure tests always use randomly assigned and available ports
-                  -->
+              Make sure tests always use randomly assigned and available ports
+          -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -153,23 +169,53 @@
 
             <plugin>
                 <groupId>org.ow2.easybeans</groupId>
-                <artifactId>maven-easybeans-plugin</artifactId>
+                <artifactId>maven-easybeans-osgi</artifactId>
                 <version>${easybeans.version}</version>
-                <dependencies>
+                <!--<dependencies>
                     <dependency>
                         <groupId>org.testng</groupId>
                         <artifactId>testng</artifactId>
                         <version>${testng.version}</version>
                     </dependency>
-                </dependencies>
+                </dependencies>-->
+                <configuration>
+
+                      <modules>
+                          <!--<module>
+                              <groupId>org.ow2.spec.ee</groupId>
+                              <artifactId>ow2-ejb-3.1-spec</artifactId>
+                              <version>${ow2-spec.version}</version>
+                          </module>
+                          <module>
+                              <groupId>org.ow2.spec.ee</groupId>
+                              <artifactId>ow2-annotation-1.1-spec</artifactId>
+                              <version>${ow2-spec.version}</version>
+                          </module>-->
+                          <module>
+                              <groupId>${project.groupId}</groupId>
+                              <artifactId>${project.artifactId}</artifactId>
+                              <version>${project.version}</version>
+                          </module>
+                      </modules>
+
+                      <frameworkDependencies>
+                        <dependency>
+                          <groupId>org.apache.felix</groupId>
+                          <artifactId>org.apache.felix.framework</artifactId>
+                          <version>4.0.2</version>
+                        </dependency>
+                    </frameworkDependencies>
+
+                    <fork>true</fork>
+                </configuration>
                 <executions>
                     <execution>
                         <id>start-maven-plugin</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>start</goal>
+                            <goal>test</goal>
                         </goals>
-                        <configuration>
+                        <!--<configuration>
                             <serverConfig>
                                 <file>${easybeans.config.file}</file>
                             </serverConfig>
@@ -178,7 +224,7 @@
                                     <directory>${project.build.directory}</directory>
                                 </directories>
                             </deployables>
-                        </configuration>
+                        </configuration>-->
                     </execution>
                     <execution>
                         <id>stop-maven-plugin</id>

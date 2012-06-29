@@ -26,8 +26,8 @@
 package org.ow2.jonas.jpaas.catalog.test;
 
 
-import org.ow2.jonas.jpaas.catalog.facade.api.IIaasCatalogFacade;
-import org.ow2.jonas.jpaas.catalog.facade.object.IaasConfiguration;
+import org.ow2.jonas.jpaas.catalog.api.IIaasCatalogFacade;
+import org.ow2.jonas.jpaas.catalog.api.IaasConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

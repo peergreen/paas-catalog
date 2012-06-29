@@ -23,10 +23,10 @@
  * --------------------------------------------------------------------------
  */
 
-package org.ow2.jonas.jpaas.catalog.facade.bean;
+package org.ow2.jonas.jpaas.catalog.bean;
 
-import org.ow2.jonas.jpaas.catalog.facade.api.IPaasCatalogFacade;
-import org.ow2.jonas.jpaas.catalog.facade.object.PaasConfiguration;
+import org.ow2.jonas.jpaas.catalog.api.IPaasCatalogFacade;
+import org.ow2.jonas.jpaas.catalog.api.PaasConfiguration;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
