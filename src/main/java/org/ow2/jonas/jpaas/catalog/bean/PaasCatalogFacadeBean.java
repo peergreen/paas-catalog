@@ -29,6 +29,8 @@ import org.ow2.jonas.jpaas.catalog.api.IPaasCatalogFacade;
 import org.ow2.jonas.jpaas.catalog.api.PaasConfiguration;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import java.util.LinkedList;
@@ -40,6 +42,8 @@ import java.util.List;
  */
 @Singleton(mappedName = "PaasCatalog")
 @Startup
+@Local(IPaasCatalogFacade.class)
+@Remote(IPaasCatalogFacade.class)
 public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
 
     /**

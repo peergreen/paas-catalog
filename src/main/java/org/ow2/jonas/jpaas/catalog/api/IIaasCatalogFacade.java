@@ -25,14 +25,12 @@
 
 package org.ow2.jonas.jpaas.catalog.api;
 
-import javax.ejb.Remote;
 import java.util.List;
 
 /**
  * Interface for the IaasCatalog facade.
  * @author David Richard
  */
-@Remote
 public interface IIaasCatalogFacade {
 
     /**

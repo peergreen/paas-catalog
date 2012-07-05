@@ -39,9 +39,9 @@
     <artifactId>jpaas-catalog</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
-    <name>JPaaS :: Catalog</name>
+    <name>jPaaS :: Catalog</name>
 
-    <description>JPaaS : Catalog</description>
+    <description>jPaaS : Catalog</description>
     <url>http://wiki.jasmine.ow2.org/</url>
     <developers/>
     <licenses>
@@ -179,7 +179,6 @@
                     </dependency>
                 </dependencies>-->
                 <configuration>
-
                       <modules>
                           <!--<module>
                               <groupId>org.ow2.spec.ee</groupId>

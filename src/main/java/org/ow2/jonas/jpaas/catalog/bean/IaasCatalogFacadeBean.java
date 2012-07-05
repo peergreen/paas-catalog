@@ -29,6 +29,8 @@ import org.ow2.jonas.jpaas.catalog.api.IIaasCatalogFacade;
 import org.ow2.jonas.jpaas.catalog.api.IaasConfiguration;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import java.util.LinkedList;
@@ -40,6 +42,8 @@ import java.util.List;
  */
 @Singleton(mappedName = "IaasCatalog")
 @Startup
+@Local(IIaasCatalogFacade.class)
+@Remote(IIaasCatalogFacade.class)
 public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
 
     /**
