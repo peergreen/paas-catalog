@@ -151,7 +151,7 @@
       <!--
           Make sure tests always use randomly assigned and available ports
       -->
-      <plugin>
+      <!--<plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
         <version>${build-helper-maven-plugin.version}</version>
@@ -178,25 +178,8 @@
         <groupId>org.ow2.easybeans</groupId>
         <artifactId>maven-easybeans-osgi</artifactId>
         <version>${easybeans.version}</version>
-        <!--<dependencies>
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>${testng.version}</version>
-            </dependency>
-        </dependencies>-->
         <configuration>
           <modules>
-            <!--<module>
-                <groupId>org.ow2.spec.ee</groupId>
-                <artifactId>ow2-ejb-3.1-spec</artifactId>
-                <version>${ow2-spec.version}</version>
-            </module>
-            <module>
-                <groupId>org.ow2.spec.ee</groupId>
-                <artifactId>ow2-annotation-1.1-spec</artifactId>
-                <version>${ow2-spec.version}</version>
-            </module>-->
             <module>
               <groupId>${project.groupId}</groupId>
               <artifactId>${project.artifactId}</artifactId>
@@ -221,16 +204,6 @@
             <goals>
               <goal>test</goal>
             </goals>
-            <!--<configuration>
-                <serverConfig>
-                    <file>${easybeans.config.file}</file>
-                </serverConfig>
-                <deployables>
-                    <directories>
-                        <directory>${project.build.directory}</directory>
-                    </directories>
-                </deployables>
-            </configuration>-->
           </execution>
           <execution>
             <id>stop-maven-plugin</id>
@@ -270,7 +243,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin>-->
     </plugins>
   </build>
 
