@@ -27,6 +27,7 @@ package org.ow2.jonas.jpaas.catalog.bean;
 
 import org.ow2.jonas.jpaas.catalog.api.IIaasCatalogFacade;
 import org.ow2.jonas.jpaas.catalog.api.IaasConfiguration;
+import org.ow2.jonas.lib.bootstrap.JProp;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Local;
@@ -51,6 +52,7 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
      */
     List<IaasConfiguration> iaasConfigurationList;
 
+    private static final String IAAS_CONFIGURATION_FOLDER = "/catalog/iaas/";
 
     /**
      * Load a configuration
@@ -61,8 +63,7 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
 
         //Sirocco IaasConfiguration Hard-coded
         List<String> capabilities = new LinkedList<String>();
-        String specificConfig = System.getProperty("user.home") + System.getProperty("file.separator")
-                + "specificConfig_sirocco.xml";
+        String specificConfig = JProp.getConfDir() +  IAAS_CONFIGURATION_FOLDER + "sirocco.xml";
         IaasConfiguration sirocco = new IaasConfiguration("sirocco", "compute", "vmm", true, true,
                 specificConfig, "SiroccoVM", capabilities);
         iaasConfigurationList.add(sirocco);

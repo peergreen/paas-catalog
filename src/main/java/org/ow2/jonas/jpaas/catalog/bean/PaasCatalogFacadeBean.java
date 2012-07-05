@@ -27,6 +27,7 @@ package org.ow2.jonas.jpaas.catalog.bean;
 
 import org.ow2.jonas.jpaas.catalog.api.IPaasCatalogFacade;
 import org.ow2.jonas.jpaas.catalog.api.PaasConfiguration;
+import org.ow2.jonas.lib.bootstrap.JProp;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Local;
@@ -51,6 +52,7 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
      */
     List<PaasConfiguration> paasConfigurationList;
 
+    private static final String PAAS_CONFIGURATION_FOLDER = "/catalog/paas/";
 
     /**
      * Load a configuration
@@ -62,9 +64,9 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
         List<String> capabilities = new LinkedList<String>();
 
         //JOnAS M6 PaasConfiguration Hard-coded
-        String specificConfig = System.getProperty("user.home") + System.getProperty("file.separator")
+        String specificConfig = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
                 + "specificConfig_jonas-full-5.3.0-M6.xml";
-        String devopsConf = System.getProperty("user.home") + System.getProperty("file.separator")
+        String devopsConf = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
                 + "devopsConf_jonas-full-5.3.0-M6.xml";
         PaasConfiguration jonasFullM6 = new PaasConfiguration("jonas-full-5.3.0-M6", "container", "jonas", true,
                 specificConfig, devopsConf, "jonas", capabilities, 10);
@@ -72,9 +74,9 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
 
 
         //Micro-JOnAS M6 PaasConfiguration Hard-coded
-        specificConfig = System.getProperty("user.home") + System.getProperty("file.separator")
+        specificConfig = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
                 + "specificConfig_micro-jonas-5.3.0-M6.xml";
-        devopsConf = System.getProperty("user.home") + System.getProperty("file.separator")
+        devopsConf = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
                 + "devopsConf_micro-jonas-5.3.0-M6.xml";
         PaasConfiguration microJonasM6 = new PaasConfiguration("micro-jonas-5.3.0-M6", "container", "jonas", true,
                 specificConfig, devopsConf, "jonas", capabilities, 10);
@@ -82,9 +84,9 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
 
         //Apache Jk PaasConfiguration Hard-coded
         capabilities = new LinkedList<String>();
-        specificConfig = System.getProperty("user.home") + System.getProperty("file.separator")
+        specificConfig = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
                 + "specificConfig_apacheJk.xml";
-        devopsConf = System.getProperty("user.home") + System.getProperty("file.separator")
+        devopsConf = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
                 + "devopsConf_apacheJk.xml";
         PaasConfiguration apacheJk = new PaasConfiguration("apacheJk", "router", "jk", false,
                 specificConfig, devopsConf, "jk", capabilities, 5);
