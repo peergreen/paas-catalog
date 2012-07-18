@@ -46,7 +46,7 @@ public interface IPaasCatalogFacade {
      * @param type the type of the PaasConfiguration to retrieve
      * @return a list of PaasConfiguration
      */
-    public List<PaasConfiguration> getPaasConfigurationList(String type);
+    public List<PaasConfiguration> getPaasConfigurationList(String type) throws PaasCatalogException;
 
     /**
      * Get a specific PaasConfiguration by its name
@@ -54,13 +54,13 @@ public interface IPaasCatalogFacade {
      * @param name the name of the PaasConfiguration
      * @return the PaasConfiguration
      */
-    public PaasConfiguration getPaasConfiguration(String name);
+    public PaasConfiguration getPaasConfiguration(String name) throws PaasCatalogException;
 
     /**
      * Get the default PaasConfiguration name
      *
      * @return the name
      */
-    public String getDefaultPaasConfigurationName();
+    public String getDefaultPaasConfigurationName() throws PaasCatalogException;
 
 }

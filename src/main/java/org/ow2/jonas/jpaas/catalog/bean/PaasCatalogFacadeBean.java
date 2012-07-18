@@ -26,8 +26,8 @@
 package org.ow2.jonas.jpaas.catalog.bean;
 
 import org.ow2.jonas.jpaas.catalog.api.IPaasCatalogFacade;
+import org.ow2.jonas.jpaas.catalog.api.PaasCatalogException;
 import org.ow2.jonas.jpaas.catalog.api.PaasConfiguration;
-import org.ow2.jonas.lib.bootstrap.JProp;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Local;
@@ -52,7 +52,9 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
      */
     List<PaasConfiguration> paasConfigurationList;
 
-    private static final String PAAS_CONFIGURATION_FOLDER = "/catalog/paas/";
+    private static final String PAAS_CONFIGURATION_FOLDER = System.getProperty("jonas.base") +
+            System.getProperty("file.separator") + "conf" + System.getProperty("file.separator") + "catalog" +
+            System.getProperty("file.separator") + "paas" + System.getProperty("file.separator");
 
     /**
      * Load a configuration
@@ -64,19 +66,18 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
         List<String> capabilities = new LinkedList<String>();
 
         //JOnAS M6 PaasConfiguration Hard-coded
-        String specificConfig = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
+        String specificConfig = PAAS_CONFIGURATION_FOLDER
                 + "specificConfig_jonas-full-5.3.0-M6.xml";
-        String devopsConf = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
+        String devopsConf = PAAS_CONFIGURATION_FOLDER
                 + "devopsConf_jonas-full-5.3.0-M6.xml";
         PaasConfiguration jonasFullM6 = new PaasConfiguration("jonas-full-5.3.0-M6", "container", "jonas", true,
                 specificConfig, devopsConf, "jonas", capabilities, 10);
         paasConfigurationList.add(jonasFullM6);
 
-
         //Micro-JOnAS M6 PaasConfiguration Hard-coded
-        specificConfig = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
+        specificConfig = PAAS_CONFIGURATION_FOLDER
                 + "specificConfig_micro-jonas-5.3.0-M6.xml";
-        devopsConf = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
+        devopsConf = PAAS_CONFIGURATION_FOLDER
                 + "devopsConf_micro-jonas-5.3.0-M6.xml";
         PaasConfiguration microJonasM6 = new PaasConfiguration("micro-jonas-5.3.0-M6", "container", "jonas", true,
                 specificConfig, devopsConf, "jonas", capabilities, 10);
@@ -84,9 +85,9 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
 
         //Apache Jk PaasConfiguration Hard-coded
         capabilities = new LinkedList<String>();
-        specificConfig = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
+        specificConfig = PAAS_CONFIGURATION_FOLDER
                 + "specificConfig_apacheJk.xml";
-        devopsConf = JProp.getConfDir() +  PAAS_CONFIGURATION_FOLDER
+        devopsConf = PAAS_CONFIGURATION_FOLDER
                 + "devopsConf_apacheJk.xml";
         PaasConfiguration apacheJk = new PaasConfiguration("apacheJk", "router", "jk", false,
                 specificConfig, devopsConf, "jk", capabilities, 5);
@@ -108,16 +109,21 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
      *
      * @param type the type of the PaasConfiguration to retrieve
      * @return a list of PaasConfiguration
+     * @throws PaasCatalogException
      */
     @Override
-    public List<PaasConfiguration> getPaasConfigurationList(String type) {
+    public List<PaasConfiguration> getPaasConfigurationList(String type) throws PaasCatalogException {
         List<PaasConfiguration> resultList = new LinkedList<PaasConfiguration>();
         for (PaasConfiguration paasConfiguration : paasConfigurationList) {
             if (paasConfiguration.getType().equals(type)) {
                 resultList.add(paasConfiguration);
             }
         }
-        return resultList;
+        if (resultList.isEmpty()) {
+            throw new PaasCatalogException("There is no PaaS Catalog with the type " + type + ".");
+        } else {
+            return resultList;
+        }
     }
 
     /**
@@ -125,9 +131,10 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
      *
      * @param name the name of the PaasConfiguration
      * @return the PaasConfiguration
+     * @throws PaasCatalogException
      */
     @Override
-    public PaasConfiguration getPaasConfiguration(String name) {
+    public PaasConfiguration getPaasConfiguration(String name) throws PaasCatalogException {
         PaasConfiguration result = null;
         for (PaasConfiguration paasConfiguration : paasConfigurationList) {
             if (paasConfiguration.getName().equals(name)) {
@@ -135,16 +142,21 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
                 break;
             }
         }
-        return result;
+        if (result == null) {
+            throw new PaasCatalogException("The PaaS Configuration named " + name + " does not exist.");
+        } else {
+            return result;
+        }
     }
 
     /**
      * Get the default PaasConfiguration name
      *
      * @return the name
+     * @throws PaasCatalogException
      */
     @Override
-    public String getDefaultPaasConfigurationName() {
+    public String getDefaultPaasConfigurationName() throws PaasCatalogException {
         String result = null;
         for (PaasConfiguration paasConfiguration : paasConfigurationList) {
             if (paasConfiguration.isDefault()) {
@@ -152,6 +164,10 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
                 break;
             }
         }
-        return result;
+        if (result == null) {
+            throw new PaasCatalogException("There is no default PaaS Configuration.");
+        } else {
+            return result;
+        }
     }
 }

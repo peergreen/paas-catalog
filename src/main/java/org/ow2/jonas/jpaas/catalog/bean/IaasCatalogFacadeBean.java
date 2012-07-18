@@ -26,8 +26,8 @@
 package org.ow2.jonas.jpaas.catalog.bean;
 
 import org.ow2.jonas.jpaas.catalog.api.IIaasCatalogFacade;
+import org.ow2.jonas.jpaas.catalog.api.IaasCatalogException;
 import org.ow2.jonas.jpaas.catalog.api.IaasConfiguration;
-import org.ow2.jonas.lib.bootstrap.JProp;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Local;
@@ -52,7 +52,9 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
      */
     List<IaasConfiguration> iaasConfigurationList;
 
-    private static final String IAAS_CONFIGURATION_FOLDER = "/catalog/iaas/";
+    private static final String IAAS_CONFIGURATION_FOLDER = System.getProperty("jonas.base") +
+            System.getProperty("file.separator") + "conf" + System.getProperty("file.separator") + "catalog" +
+            System.getProperty("file.separator") + "iaas" + System.getProperty("file.separator");
 
     /**
      * Load a configuration
@@ -63,7 +65,7 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
 
         //Sirocco IaasConfiguration Hard-coded
         List<String> capabilities = new LinkedList<String>();
-        String specificConfig = JProp.getConfDir() +  IAAS_CONFIGURATION_FOLDER + "sirocco.xml";
+        String specificConfig = IAAS_CONFIGURATION_FOLDER + "sirocco.xml";
         IaasConfiguration sirocco = new IaasConfiguration("sirocco", "compute", "vmm", true, true,
                 specificConfig, "SiroccoVM", capabilities);
         iaasConfigurationList.add(sirocco);
@@ -83,9 +85,10 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
      * Get the default IaasConfiguration name
      *
      * @return the name
+     * @throws IaasCatalogException
      */
     @Override
-    public String getDefaultIaasConfigurationName() {
+    public String getDefaultIaasConfigurationName() throws IaasCatalogException {
         String result = null;
         for (IaasConfiguration iaasConfiguration : iaasConfigurationList) {
             if (iaasConfiguration.isDefault()) {
@@ -93,7 +96,11 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
                 break;
             }
         }
-        return result;
+        if (result == null) {
+            throw new IaasCatalogException("There is no default IaaS Configuration.");
+        } else {
+            return result;
+        }
     }
 
     /**
@@ -101,9 +108,10 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
      *
      * @param name the name of the IaasConfiguration
      * @return the IaasConfiguration
+     * @throws IaasCatalogException
      */
     @Override
-    public IaasConfiguration getIaasConfiguration(String name) {
+    public IaasConfiguration getIaasConfiguration(String name) throws IaasCatalogException {
         IaasConfiguration result = null;
         for (IaasConfiguration iaasConfiguration : iaasConfigurationList) {
             if (iaasConfiguration.getName().equals(name)) {
@@ -111,6 +119,10 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
                 break;
             }
         }
-        return result;
+        if (result == null) {
+            throw new IaasCatalogException("The IaaS Configuration named " + name + " does not exist.");
+        } else {
+            return result;
+        }
     }
 }

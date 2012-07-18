@@ -25,35 +25,17 @@
 
 package org.ow2.jonas.jpaas.catalog.api;
 
-import java.util.List;
-
 /**
- * Interface for the IaasCatalog facade.
- * @author David Richard
+ * IaasCatalog Exception
  */
-public interface IIaasCatalogFacade {
+public class IaasCatalogException extends Exception {
 
-    /**
-     * Get all the IaasConfigurations
-     *
-     * @return a list of IaasConfiguration
-     */
-    public List<IaasConfiguration> getIaasConfigurationList();
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * Get the default IaasConfiguration name
-     *
-     * @return the name
-     * @throws IaasCatalogException
-     */
-    public String getDefaultIaasConfigurationName() throws IaasCatalogException;
-
-    /**
-     * Get a specific IaasConfiguration by its name
-     *
-     * @param name the name of the IaasConfiguration
-     * @return the IaasConfiguration
-     * @throws IaasCatalogException
-     */
-    public IaasConfiguration getIaasConfiguration(String name) throws IaasCatalogException;
+    public IaasCatalogException(String msg) {
+        super(msg);
+    }
+    public IaasCatalogException(String msg, Throwable t) {
+        super(msg,t);
+    }
 }
