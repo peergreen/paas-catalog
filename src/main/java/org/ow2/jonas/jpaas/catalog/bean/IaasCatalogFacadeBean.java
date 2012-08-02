@@ -34,8 +34,10 @@ import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * IaasCatalog Singleton Bean
@@ -64,7 +66,7 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
         iaasConfigurationList = new LinkedList<IaasConfiguration>();
 
         //Sirocco IaasConfiguration Hard-coded
-        List<String> capabilities = new LinkedList<String>();
+        Map<String,String> capabilities = new HashMap<String,String>();
         String specificConfig = IAAS_CONFIGURATION_FOLDER + "sirocco.xml";
         IaasConfiguration sirocco = new IaasConfiguration("sirocco", "compute", "vmm", true, true,
                 specificConfig, "SiroccoVM", capabilities);

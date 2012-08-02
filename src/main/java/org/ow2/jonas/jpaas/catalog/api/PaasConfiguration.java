@@ -26,6 +26,7 @@
 package org.ow2.jonas.jpaas.catalog.api;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Define a Paas Configuration
@@ -71,7 +72,7 @@ public class PaasConfiguration implements java.io.Serializable {
     /**
      * The IaaS capabilities
      */
-    private List<String> capabilities;
+    private Map<String,String> capabilities;
 
     /**
      * Amount of needed port number
@@ -80,7 +81,7 @@ public class PaasConfiguration implements java.io.Serializable {
 
 
     public PaasConfiguration(String name, String type, String subType, boolean aDefault, String specificConfig,
-            String devopsConf, String prefixResourceName, List<String> capabilities, int portRangeSize) {
+            String devopsConf, String prefixResourceName, Map<String,String> capabilities, int portRangeSize) {
         this.name = name;
         this.type = type;
         this.subType = subType;
@@ -148,11 +149,11 @@ public class PaasConfiguration implements java.io.Serializable {
         this.prefixResourceName = prefixResourceName;
     }
 
-    public List<String> getCapabilities() {
+    public Map<String,String> getCapabilities() {
         return capabilities;
     }
 
-    public void setCapabilities(List<String> capabilities) {
+    public void setCapabilities(Map<String,String> capabilities) {
         this.capabilities = capabilities;
     }
 

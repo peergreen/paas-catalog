@@ -26,6 +26,7 @@
 package org.ow2.jonas.jpaas.catalog.api;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Define an Iaas Configuration
@@ -71,11 +72,11 @@ public class IaasConfiguration implements java.io.Serializable {
     /**
      * The IaaS capabilities
      */
-    private List<String> capabilities;
+    private Map<String,String> capabilities;
 
 
     public IaasConfiguration(String name, String type, String subType, boolean isDefault, boolean autoStart,
-            String specificConfig, String prefixResourceName, List<String> capabilities) {
+            String specificConfig, String prefixResourceName, Map<String,String> capabilities) {
         this.name = name;
         this.type = type;
         this.subType = subType;
@@ -142,11 +143,11 @@ public class IaasConfiguration implements java.io.Serializable {
         this.prefixResourceName = prefixResourceName;
     }
 
-    public List<String> getCapabilities() {
+    public Map<String,String> getCapabilities() {
         return capabilities;
     }
 
-    public void setCapabilities(List<String> capabilities) {
+    public void setCapabilities(Map<String,String> capabilities) {
         this.capabilities = capabilities;
     }
 

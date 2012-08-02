@@ -34,8 +34,10 @@ import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * PaasCatalog Singleton Bean
@@ -63,7 +65,7 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
     public void loadConfiguration() {
         paasConfigurationList = new LinkedList<PaasConfiguration>();
 
-        List<String> capabilities = new LinkedList<String>();
+        Map<String,String> capabilities = new HashMap<String,String>();
 
         //JOnAS M6 PaasConfiguration Hard-coded
         String specificConfig = PAAS_CONFIGURATION_FOLDER
@@ -84,13 +86,13 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
         paasConfigurationList.add(microJonasM6);
 
         //Apache Jk PaasConfiguration Hard-coded
-        capabilities = new LinkedList<String>();
+        capabilities = new HashMap<String,String>();
         specificConfig = PAAS_CONFIGURATION_FOLDER
                 + "specificConfig_apacheJk.xml";
         devopsConf = PAAS_CONFIGURATION_FOLDER
                 + "devopsConf_apacheJk.xml";
         PaasConfiguration apacheJk = new PaasConfiguration("apacheJk", "router", "jk", false,
-                specificConfig, devopsConf, "jk", capabilities, 5);
+                specificConfig, devopsConf, "apache", capabilities, 5);
         paasConfigurationList.add(apacheJk);
     }
 
