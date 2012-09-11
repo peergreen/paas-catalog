@@ -27,6 +27,7 @@ package org.ow2.jonas.jpaas.catalog.test;
 
 
 import org.ow2.jonas.jpaas.catalog.api.IPaasCatalogFacade;
+import org.ow2.jonas.jpaas.catalog.api.PaasCatalogException;
 import org.ow2.jonas.jpaas.catalog.api.PaasConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -60,13 +61,13 @@ public class TestPaasCatalogFacadeBean {
     }
 
     @Test
-    public void testGetDefaultPaasConfigurationName() {
+    public void testGetDefaultPaasConfigurationName() throws PaasCatalogException {
         String name = iPaasCatalogFacade.getDefaultPaasConfigurationName();
         Assert.assertEquals(name, "jonas-full-5.3.0-M6", "Test the default PaasConfiguration name");
     }
 
     @Test
-    public void testGetPaasConfiguration() {
+    public void testGetPaasConfiguration() throws PaasCatalogException {
         PaasConfiguration paasConfiguration = iPaasCatalogFacade.getPaasConfiguration("apacheJk");
         Assert.assertEquals(paasConfiguration.getName(), "apacheJk", "Test the name of the returned PaasConfiguration");
     }

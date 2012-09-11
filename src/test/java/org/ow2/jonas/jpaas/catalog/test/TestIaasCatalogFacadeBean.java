@@ -27,6 +27,7 @@ package org.ow2.jonas.jpaas.catalog.test;
 
 
 import org.ow2.jonas.jpaas.catalog.api.IIaasCatalogFacade;
+import org.ow2.jonas.jpaas.catalog.api.IaasCatalogException;
 import org.ow2.jonas.jpaas.catalog.api.IaasConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -60,13 +61,13 @@ public class TestIaasCatalogFacadeBean {
     }
 
     @Test
-    public void testGetDefaultIaasConfigurationName() {
+    public void testGetDefaultIaasConfigurationName() throws IaasCatalogException {
         String name = iIaasCatalogFacade.getDefaultIaasConfigurationName();
         Assert.assertEquals(name, "sirocco", "Test the default IaasConfiguration name");
     }
 
     @Test
-    public void testGetIaasConfiguration() {
+    public void testGetIaasConfiguration() throws IaasCatalogException {
         IaasConfiguration iaasConfiguration = iIaasCatalogFacade.getIaasConfiguration("sirocco");
         Assert.assertEquals(iaasConfiguration.getName(), "sirocco", "Test the name of the returned IaasConfiguration");
     }

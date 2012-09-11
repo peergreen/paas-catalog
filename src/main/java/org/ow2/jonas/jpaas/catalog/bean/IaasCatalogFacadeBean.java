@@ -69,7 +69,7 @@ public class IaasCatalogFacadeBean implements IIaasCatalogFacade {
         Map<String,String> capabilities = new HashMap<String,String>();
         String specificConfig = IAAS_CONFIGURATION_FOLDER + "sirocco.xml";
         IaasConfiguration sirocco = new IaasConfiguration("sirocco", "compute", "vmm", true, true,
-                specificConfig, "SiroccoVM", capabilities);
+                specificConfig, "jpaas-SiroccoVM", capabilities);
         iaasConfigurationList.add(sirocco);
     }
 
