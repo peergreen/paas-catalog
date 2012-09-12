@@ -69,21 +69,30 @@ public class PaasCatalogFacadeBean implements IPaasCatalogFacade {
 
         //JOnAS M6 PaasConfiguration Hard-coded
         String specificConfig = PAAS_CONFIGURATION_FOLDER
-                + "specificConfig_jonas-full-5.3.0-M6.xml";
+                + "specificConfig_jonas-full-5_3_0-M6.xml";
         String devopsConf = PAAS_CONFIGURATION_FOLDER
-                + "devopsConf_jonas-full-5.3.0-M6.xml";
-        PaasConfiguration jonasFullM6 = new PaasConfiguration("jonas-full-5.3.0-M6", "container", "jonas", true,
+                + "devopsConf_jonas-full-5_3_0-M6.xml";
+        PaasConfiguration jonasFullM6 = new PaasConfiguration("jonas-full-5_3_0-M6", "container", "jonas", true,
                 specificConfig, devopsConf, "jonas", capabilities, 10);
         paasConfigurationList.add(jonasFullM6);
 
         //Micro-JOnAS M6 PaasConfiguration Hard-coded
         specificConfig = PAAS_CONFIGURATION_FOLDER
-                + "specificConfig_micro-jonas-5.3.0-M6.xml";
+                + "specificConfig_micro-jonas-5_3_0-M6.xml";
         devopsConf = PAAS_CONFIGURATION_FOLDER
-                + "devopsConf_micro-jonas-5.3.0-M6.xml";
-        PaasConfiguration microJonasM6 = new PaasConfiguration("micro-jonas-5.3.0-M6", "container", "jonas", true,
+                + "devopsConf_micro-jonas-5_3_0-M6.xml";
+        PaasConfiguration microJonasM6 = new PaasConfiguration("micro-jonas-5_3_0-M6", "container", "jonas", true,
                 specificConfig, devopsConf, "jonas", capabilities, 10);
         paasConfigurationList.add(microJonasM6);
+
+        //JOnAS M7 PaasConfiguration Hard-coded
+        specificConfig = PAAS_CONFIGURATION_FOLDER
+                + "specificConfig_jonas-full-5_3_0-M7.xml";
+        devopsConf = PAAS_CONFIGURATION_FOLDER
+                + "devopsConf_jonas-full-5_3_0-M7.xml";
+        PaasConfiguration jonasFullM7 = new PaasConfiguration("jonas-full-5_3_0-M7", "container", "jonas", true,
+                specificConfig, devopsConf, "jonas", capabilities, 10);
+        paasConfigurationList.add(jonasFullM7);
 
         //Apache Jk PaasConfiguration Hard-coded
         capabilities = new HashMap<String,String>();
