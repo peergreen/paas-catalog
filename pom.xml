@@ -99,6 +99,11 @@
     </dependency>
   </dependencies>
 
+  <scm>
+    <connection>scm:git:git://gitorious.ow2.org/ow2-jasmine/jpaas-catalog.git</connection>
+    <developerConnection>scm:git:git@gitorious.ow2.org:ow2-jasmine/jpaas-catalog.git</developerConnection>
+    <url>http://gitorious.ow2.org/ow2-jasmine/jpaas-catalog/trees/master</url>
+  </scm>
 
   <build>
     <testResources>
