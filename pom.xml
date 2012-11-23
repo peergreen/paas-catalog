@@ -105,6 +105,7 @@
     <url>http://gitorious.ow2.org/ow2-jasmine/jpaas-catalog/trees/master</url>
   </scm>
 
+
   <build>
     <testResources>
       <testResource>
@@ -144,6 +145,14 @@
           <instructions>
             <_include>-target/classes/META-INF/${project.artifactId}.bnd</_include>
           </instructions>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
         </configuration>
       </plugin>
 
