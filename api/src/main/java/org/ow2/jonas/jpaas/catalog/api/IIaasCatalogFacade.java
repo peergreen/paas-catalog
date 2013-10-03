@@ -38,7 +38,7 @@ public interface IIaasCatalogFacade {
      * Get the default IaasConfiguration name
      *
      * @return the name
-     * @throws IaasCatalogException
+     * @throws org.ow2.jonas.jpaas.catalog.api.IaasCatalogException
      */
     public String getDefaultIaasConfigurationName() throws IaasCatalogException;
 
@@ -47,7 +47,7 @@ public interface IIaasCatalogFacade {
      *
      * @param name the name of the IaasConfiguration
      * @return the IaasConfiguration
-     * @throws IaasCatalogException
+     * @throws org.ow2.jonas.jpaas.catalog.api.IaasCatalogException
      */
     public IaasConfiguration getIaasConfiguration(String name) throws IaasCatalogException;
 }
