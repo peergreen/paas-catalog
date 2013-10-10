@@ -32,26 +32,10 @@
     <artifactId>jpaas-catalog-api</artifactId>
     <packaging>bundle</packaging>
     <name>jPaaS :: Catalog :: API</name>
-
     <description>jPaaS : Catalog :: API</description>
-    <url>http://wiki.jasmine.ow2.org/</url>
-    <developers/>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-        </license>
-    </licenses>
-
+ 
     <dependencies>
     </dependencies>
-
-    <scm>
-        <connection>scm:git:git://gitorious.ow2.org/ow2-jasmine/jpaas-catalog-api.git</connection>
-        <developerConnection>scm:git:git@gitorious.ow2.org:ow2-jasmine/jpaas-catalog-api.git</developerConnection>
-        <url>http://gitorious.ow2.org/ow2-jasmine/jpaas-catalog/trees/master</url>
-    </scm>
-
 
     <build>
         <pluginManagement>
